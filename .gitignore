@@ -1,0 +1,15 @@
+/dist
+.env
+.env.*.local
+/logs
+config.json
+/node_modules
+
+/coverage
+
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+*.tsbuildinfo

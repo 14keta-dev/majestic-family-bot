@@ -1,0 +1,49 @@
+{
+  "name": "majestic-family-bot",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "db:push": "tsx node_modules/drizzle-kit/bin.cjs push",
+    "db:generate": "tsx node_modules/drizzle-kit/bin.cjs generate",
+    "deploy": "tsx src/deploy.ts",
+    "deploy-emojis": "tsx scripts/deploy_emojis.ts",
+    "deploy-emojis:dry": "tsx scripts/deploy_emojis.ts --dry-run",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "discord.js"
+  ],
+  "author": "14keta-dev",
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "A Discord bot for managing family/clan applications — apply forms, review workflow, and role automation.",
+  "dependencies": {
+    "discord-api-types": "^0.38.53",
+    "discord.js": "^14.27.0",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "nanoid": "^6.0.1",
+    "pino": "^10.3.1",
+    "postgres": "^3.4.9",
+    "tslog": "^5.1.0",
+    "vitest": "^4.1.10",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^10.8.0",
+    "sharp": "^0.35.3",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.5",
+    "typescript": "^7.0.2"
+  },
+  "packageManager": "pnpm@11.18.0+sha512.33d83c77da82f49fba836925c6f1b841181ec3132b670639bd012f7075f5c7cf634c5f870147c19aae7478fac01df09d8892e880454896edd23ee9b33757563c"
+}
