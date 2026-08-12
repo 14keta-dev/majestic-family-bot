@@ -17,7 +17,7 @@ import { getServerLogo } from "../../utils/emojis/server_emoji_map";
 import { APPLY_TYPES } from "../../utils/config/family_applications/applyFieldPresets";
 
 const FALLBACK_BANNER_URL =
-    "https://cdn.discordapp.com/attachments/1069576476489433178/1480295862797074554/black_banner_ds.gif";
+    "https://t4.ftcdn.net/jpg/06/96/89/13/360_F_696891328_utj80ZwXsdy8SloC9IBaFGDIcGNBrEze.jpg";
 
 export const APPLY_SELECT_MENU_ID = "apply_select";
 const DUMMY_OPTION_VALUE = "dummy_input";
