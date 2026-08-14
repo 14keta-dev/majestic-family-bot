@@ -1,4 +1,3 @@
-
 export function matchCustomId(
     interactionId: string,
     registeredId: string,
@@ -6,5 +5,8 @@ export function matchCustomId(
 ): boolean {
     if (interactionId === registeredId) return true;
     if (!dynamic) return false;
-    return interactionId.startsWith(`${registeredId}:`);
+    if (!interactionId.startsWith(registeredId)) return false;
+    
+    const rest = interactionId.slice(registeredId.length);
+    return rest === '' || rest.startsWith(':');
 }

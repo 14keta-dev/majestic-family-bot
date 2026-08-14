@@ -1,10 +1,6 @@
-
-
 import { z } from "zod";
 import { BotConfig, DeepPartial } from "./types";
 import { Majestic_Servers } from "../emojis/server_emoji_map";
-
-// ── Full (strict) schema ──────────────────────────────────────────────────
 
 const channelsSchema = z.object({
     apply_channel: z.string(),
@@ -16,15 +12,39 @@ const channelsSchema = z.object({
 });
 
 const familyApplicationsSchema = z.object({
-    active: z.boolean(),   
+    active: z.boolean(),
     server: z.nativeEnum(Majestic_Servers),
     channels: channelsSchema,
     apply_messageId: z.string().nullable(),
     priority_roles: z.array(z.string()).default([]),
 });
 
+const afkSchema = z.object({
+    panel_channel: z.string(),
+    panel_message: z.string(),
+});
+
+const logsSchema = z.object({
+    category: z.string(),
+    afk_log: z.string(),
+    vacation_log: z.string().optional(),
+});
+
+const vacationSchema = z.object({
+    controlled: z.boolean(),
+    ping_role: z.array(z.string()).optional(),
+    incoming_request: z.string().optional(),
+    archive_channel: z.string().optional(),
+    vacation_role: z.string(),
+    panel_channel: z.string(),
+    panel_message: z.string(),
+});
+
 export const botConfigSchema = z.object({
     family_applications: familyApplicationsSchema,
+    AFK: afkSchema,
+    logs: logsSchema,
+    vacation: vacationSchema,
 });
 
 const channelsPartialSchema = channelsSchema.partial();
@@ -37,8 +57,15 @@ const familyApplicationsPartialSchema = z.object({
     priority_roles: z.array(z.string()).optional(),
 });
 
+const afkPartialSchema = afkSchema.partial();
+const logsPartialSchema = logsSchema.partial();
+const vacationPartialSchema = vacationSchema.partial();
+
 const botConfigPartialSchema = z.object({
     family_applications: familyApplicationsPartialSchema.optional(),
+    AFK: afkPartialSchema.optional(),
+    logs: logsPartialSchema.optional(),
+    vacation: vacationPartialSchema.optional(),
 });
 
 export function parsePartialConfig(data: unknown): DeepPartial<BotConfig> {

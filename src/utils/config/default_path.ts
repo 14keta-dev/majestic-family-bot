@@ -1,4 +1,3 @@
-
 import { Majestic_Servers } from "../emojis/server_emoji_map";
 import { BotConfig } from "./types";
 
@@ -16,4 +15,18 @@ export const DEFAULT_CONFIG: BotConfig = {
         apply_messageId: null,
         priority_roles: [""]
     },
+    AFK: {
+        panel_channel: "",
+        panel_message: ""
+    },
+    logs: {
+        category: "",
+        afk_log: ""
+    },
+    vacation: {
+        controlled: false,
+        vacation_role: "",
+        panel_channel: "",
+        panel_message: ""
+    }
 };

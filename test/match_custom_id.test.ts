@@ -47,5 +47,10 @@ describe('matchCustomId', () => {
         it('still matches an exact id even when dynamic is true', () => {
             expect(matchCustomId('apply_modal', 'apply_modal', { dynamic: true })).toBe(true);
         });
+        
+        it('does not match when the registered prefix consumed the boundary colon into itself', () => {
+            expect(matchCustomId('embed:x:next:0', 'embed:x:next:', { dynamic: true })).toBe(false);
+            expect(matchCustomId('embed:x:next:0', 'embed:x:next', { dynamic: true })).toBe(true);
+        });
     });
 });

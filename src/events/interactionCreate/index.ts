@@ -56,13 +56,14 @@ export default {
         }
 
         if (interaction.isModalSubmit()) {
-            console.log('[modal debug] incoming customId:', interaction.customId);
+            console.log(interaction.customId)
             const modal = modals.find(m =>
                 typeof m.customId === 'string'
                     ? matchCustomId(interaction.customId, m.customId, { dynamic: m.dynamic })
                     : m.customId.test(interaction.customId)
             );
-            console.log('[modal debug] matched:', !!modal, 'loaded modals:', modals.map(m => m.customId));
+
+            console.log(interaction.customId)
             if (!modal) return;
             try {
                 if (modal.defer) {
@@ -76,7 +77,7 @@ export default {
         }
 
         if (interaction.isAnySelectMenu()) {
-          
+
             const select = selects.find(s =>
                 typeof s.customId === 'string'
                     ? interaction.customId === s.customId

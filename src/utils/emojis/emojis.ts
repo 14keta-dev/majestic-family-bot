@@ -7,8 +7,12 @@ export type AssetEmojiSet = Record<string, string>;
 // === AUTO-GENERATED START ===
 const assetsEmojis: AssetEmojiSet = {
     active: "<a:active:1536867341164478594>",
+    afk: "<a:afk:1536994312020033536>",
     closed: "<a:closed:1536867344058421338>",
     dot: "<a:dot:1536134273235554334>",
+    next: "<a:next:1537949059732480030>",
+    prev: "<a:prev:1537949062802710548>",
+    vacation: "<a:vacation:1537947849697009724>",
 };
 
 const serversEmojis: BaseEmojiSet = {
