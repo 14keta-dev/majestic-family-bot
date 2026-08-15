@@ -5,7 +5,7 @@ import { metaBuilder } from "../../utils/logger/met_builder";
 import { log } from "../../utils/logger";
 import { safeReply } from "../../utils/safeReply.helper";
 import { afk_store } from "../../utils/AFK/afk.schema";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 
 export const AFK_MODAL_CUSTOM_ID = {
     modal: "modal:afk:enter",
@@ -31,7 +31,7 @@ export default {
                 await interaction.reply({
                     embeds: [
                         new EmbedBuilder()
-                            .setTitle(`${botAssetEmojis.dot} Ошибка`)
+                            .setTitle(`${botAssetsEmojis.dot} Ошибка`)
                             .setDescription("> Вы уже находитесь в AFK")
                             .setColor("Red"),
                     ],

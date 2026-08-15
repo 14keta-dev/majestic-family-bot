@@ -1,8 +1,5 @@
-
 import { botEmojis } from "./emojis";
 import { SERVER_COMPONENTS, ServerCode, ServerComponent } from "./server_emoji_map";
-
-
 
 export interface Server extends ServerComponent {
     logo: string;

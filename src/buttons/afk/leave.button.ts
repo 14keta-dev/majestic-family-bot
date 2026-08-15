@@ -6,12 +6,12 @@ import { metaBuilder } from "../../utils/logger/met_builder";
 import { log } from "../../utils/logger";
 import { safeReply } from "../../utils/safeReply.helper";
 import { afk_store, Not_in_afk_error } from "../../utils/AFK/afk.schema";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 import { getConfig } from "../../utils/config/store";
 
 function errorEmbed(description: string): EmbedBuilder {
     return new EmbedBuilder()
-        .setTitle(`${botAssetEmojis.dot} Ошибка`)
+        .setTitle(`${botAssetsEmojis.dot} Ошибка`)
         .setDescription(description)
         .setColor("Red");
 }
@@ -62,9 +62,9 @@ export default {
                             .setTitle("> AFK: выход")
                             .setDescription(`<@${interaction.user.id}> вернулся из AFK`)
                             .addFields(
-                                { name: "> Пробыл в AFK", value: `${botAssetEmojis.dot} ${elapsedFormatted}`, inline: true },
-                                { name: "> Ушёл в AFK", value: `${botAssetEmojis.dot} <t:${Math.floor(enteredAt.getTime() / 1000)}:R>`, inline: true },
-                                { name: "> Причина", value: `${botAssetEmojis.dot} ${active.afk_reason}`, inline: false },
+                                { name: "> Пробыл в AFK", value: `${botAssetsEmojis.dot} ${elapsedFormatted}`, inline: true },
+                                { name: "> Ушёл в AFK", value: `${botAssetsEmojis.dot} <t:${Math.floor(enteredAt.getTime() / 1000)}:R>`, inline: true },
+                                { name: "> Причина", value: `${botAssetsEmojis.dot} ${active.afk_reason}`, inline: false },
                             )
                             .setColor("Green")
                             .setTimestamp();
@@ -106,8 +106,8 @@ export default {
             await interaction.editReply({
                 embeds: [
                     new EmbedBuilder()
-                        .setTitle(`${botAssetEmojis.dot} Вы вышли из AFK`)
-                        .addFields({ name: "> Пробыли в AFK", value: `${botAssetEmojis.dot} ${elapsedFormatted}` })
+                        .setTitle(`${botAssetsEmojis.dot} Вы вышли из AFK`)
+                        .addFields({ name: "> Пробыли в AFK", value: `${botAssetsEmojis.dot} ${elapsedFormatted}` })
                         .setColor("Green"),
                 ],
             });

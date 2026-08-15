@@ -1,7 +1,7 @@
 import { Client, EmbedBuilder, TextBasedChannel } from "discord.js";
 import { afk_store, AFK_schema, Not_in_afk_error } from "./afk.schema";
 import { getConfig } from "../config/store";
-import { botAssetEmojis } from "../emojis/emojis";
+import { botAssetsEmojis } from "../emojis/emojis";
 
 const AUTOKICK_CHECK_INTERVAL_MS = 60 * 1000; 
 const SYSTEM_KICK_REASON = "Время AFK истекло";
@@ -32,9 +32,9 @@ async function postSystemKickLog(logChannel: TextBasedChannel, entry: AFK_schema
         .setTitle("> AFK: снят системой")
         .setDescription(`<@${entry.userId}> был автоматически снят с AFK — время истекло`)
         .addFields(
-            { name: "> Пробыл в AFK", value: `${botAssetEmojis.dot} ${formatMinutes(elapsedMinutes)}`, inline: true },
-            { name: "> Ушёл в AFK", value: `${botAssetEmojis.dot} <t:${Math.floor(enteredAt.getTime() / 1000)}:R>`, inline: true },
-            { name: "> Причина", value: `${botAssetEmojis.dot} ${entry.afk_reason}`, inline: false },
+            { name: "> Пробыл в AFK", value: `${botAssetsEmojis.dot} ${formatMinutes(elapsedMinutes)}`, inline: true },
+            { name: "> Ушёл в AFK", value: `${botAssetsEmojis.dot} <t:${Math.floor(enteredAt.getTime() / 1000)}:R>`, inline: true },
+            { name: "> Причина", value: `${botAssetsEmojis.dot} ${entry.afk_reason}`, inline: false },
         )
         .setColor("Orange")
         .setTimestamp();

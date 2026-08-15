@@ -10,11 +10,11 @@ import { applicationSchema } from "../../../utils/db/schema";
 import { getApplyType } from "../../../utils/config/family_applications/applyFieldPresets";
 import can_review_application from "../../../utils/family_applications/can_review.helper";
 import { getConfig } from "../../../utils/config/store";
-import { botAssetEmojis } from "../../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../../utils/emojis/emojis";
 
 const STATUS_LABEL: Record<string, string> = {
-    ACCEPTED: `${botAssetEmojis.active} Принята`,
-    REJECTED: `${botAssetEmojis.closed} Отклонена`,
+    ACCEPTED: `${botAssetsEmojis.active} Принята`,
+    REJECTED: `${botAssetsEmojis.closed} Отклонена`,
 };
 
 export default {

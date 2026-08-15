@@ -5,7 +5,7 @@ import { metaBuilder } from "../../utils/logger/met_builder";
 import { log } from "../../utils/logger";
 import { safeReply } from "../../utils/safeReply.helper";
 import { afk_store } from "../../utils/AFK/afk.schema";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 import { AFK_LOG_BUTTON_CUSTOM_ID } from "../../modals/AFK/enter.modal";
 
 export const AFK_KICK_MODAL_CUSTOM_ID = {
@@ -15,7 +15,7 @@ export const AFK_KICK_MODAL_CUSTOM_ID = {
 
 function errorEmbed(description: string): EmbedBuilder {
     return new EmbedBuilder()
-        .setTitle(`${botAssetEmojis.dot} Ошибка`)
+        .setTitle(`${botAssetsEmojis.dot} Ошибка`)
         .setDescription(description)
         .setColor("Red");
 }

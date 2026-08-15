@@ -5,7 +5,7 @@ import { metaBuilder } from "../../utils/logger/met_builder";
 import { log } from "../../utils/logger";
 import { safeReply } from "../../utils/safeReply.helper";
 import { afk_store } from "../../utils/AFK/afk.schema";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 
 const MAX_PER_EMBED = 10;
 
@@ -41,7 +41,7 @@ export default {
                 await interaction.editReply({
                     embeds: [
                         new EmbedBuilder()
-                            .setTitle(`${botAssetEmojis.dot} Список AFK`)
+                            .setTitle(`${botAssetsEmojis.dot} Список AFK`)
                             .setDescription("> Сейчас никто не находится в AFK")
                             .setColor("Green"),
                     ],
@@ -63,7 +63,7 @@ export default {
                     .setColor("Green");
 
                 if (index === 0) {
-                    embed.setTitle(`${botAssetEmojis.dot} Список AFK`);
+                    embed.setTitle(`${botAssetsEmojis.dot} Список AFK`);
                 }
 
                 return embed;

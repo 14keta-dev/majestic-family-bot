@@ -14,7 +14,8 @@
     "deploy": "tsx src/deploy.ts",
     "deploy-emojis": "tsx scripts/deploy_emojis.ts",
     "deploy-emojis:dry": "tsx scripts/deploy_emojis.ts --dry-run",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prod": "pnpm build && pnpm start"
   },
   "keywords": [
     "discord",

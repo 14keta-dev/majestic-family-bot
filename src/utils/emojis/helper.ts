@@ -1,4 +1,3 @@
-
 import { readdirSync, statSync, Dirent } from "fs";
 import { join, basename, extname } from "path";
 

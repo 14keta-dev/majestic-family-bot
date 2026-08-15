@@ -1,6 +1,6 @@
 // manage.embed.ts
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ContainerBuilder, MessageActionRowComponentBuilder, SeparatorBuilder, SeparatorSpacingSize, TextDisplayBuilder } from 'discord.js';
-import { botAssetEmojis } from '../../utils/emojis/emojis';
+import { botAssetsEmojis } from '../../utils/emojis/emojis';
 import type { ManageSummaryRow } from '../../utils/family_applications/manage_summary_query';
 
 interface ManageProps {
@@ -32,7 +32,7 @@ export const manage_family_applications_embed = ({ applications, active }: Manag
             )
             .addTextDisplayComponents(
                 new TextDisplayBuilder().setContent(
-                    `**Статус -** ${active ? `${botAssetEmojis.active} Открыто` : `${botAssetEmojis.closed} Закрыто`} \n**Всего заявок -** ${applications.length} \n**Принятых -** ${accepted.length} \n**Отклонёных -** ${rejected.length} `,
+                    `**Статус -** ${active ? `${botAssetsEmojis.active} Открыто` : `${botAssetsEmojis.closed} Закрыто`} \n**Всего заявок -** ${applications.length} \n**Принятых -** ${accepted.length} \n**Отклонёных -** ${rejected.length} `,
                 ),
             )
             .addSeparatorComponents(

@@ -1,6 +1,6 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import { VACATION_LIST_PAGINATION_CUSTOM_ID } from "./vacation.embed";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 
 export const VACATION_REVIEW_CUSTOM_IDS = {
     accept: "embed:vacation:vacation_request:accept",
@@ -35,12 +35,12 @@ export const vacation_components = {
         return new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId(`${VACATION_LIST_PAGINATION_CUSTOM_ID.prev}:${page}`)
-                .setEmoji(botAssetEmojis.prev)
+                .setEmoji(botAssetsEmojis.prev)
                 .setStyle(ButtonStyle.Secondary)
                 .setDisabled(page === 0),
             new ButtonBuilder()
                 .setCustomId(`${VACATION_LIST_PAGINATION_CUSTOM_ID.next}:${page}`)
-                .setEmoji(botAssetEmojis.next)
+                .setEmoji(botAssetsEmojis.next)
                 .setStyle(ButtonStyle.Secondary)
                 .setDisabled(page === totalPages - 1),
         );

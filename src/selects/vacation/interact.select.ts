@@ -26,7 +26,7 @@ import { vacation_role_service } from "../../utils/vacation/remove_roles";
 import { respond } from "../../utils/vacation/respond.helper";
 import { vacation_components } from "../../embed/vacation/vacation.components";
 import { buildVacationListEmbed, chunk } from "../../utils/vacation/vacation_list.helper";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 
 const EMBED_COLOR = 0xF2B84B;
 const SUCCESS_COLOR = 0x57C77A;
@@ -110,7 +110,7 @@ async function guardCanTakeVacation(interaction: StringSelectMenuInteraction<"ca
             embeds: [
                 new EmbedBuilder()
                     .setColor(EMBED_COLOR)
-                    .setTitle(`${botAssetEmojis.vacation} Вы уже в отпуске`)
+                    .setTitle(`${botAssetsEmojis.vacation} Вы уже в отпуске`)
                     .setDescription(
                         `У вас уже есть активный отпуск — новый оформить пока нельзя.\n\n**Осталось:** ${formatVacationDuration(existing.estimated_end)}`,
                     ),
@@ -207,7 +207,7 @@ async function handleLeaveVacation(
             embeds: [
                 new EmbedBuilder()
                     .setColor(SUCCESS_COLOR)
-                    .setDescription(`${botAssetEmojis.active} С возвращением! Ваш отпуск завершён, роли восстановлены.`),
+                    .setDescription(`${botAssetsEmojis.active} С возвращением! Ваш отпуск завершён, роли восстановлены.`),
             ],
         });
     } finally {

@@ -1,7 +1,7 @@
 import { EmbedBuilder } from "discord.js";
 import { formatDateTimeDDMMYYYY, formatVacationDuration, listActiveVacations, Vacation_schema } from "./vacation.schema";
 import { vacation_components } from "../../embed/vacation/vacation.components";
-import { botAssetEmojis } from "../emojis/emojis";
+import { botAssetsEmojis } from "../emojis/emojis";
 
 const EMBED_COLOR = 0x282828;
 
@@ -17,7 +17,7 @@ export function chunk<T>(items: T[], size: number): T[][] {
 
 function formatVacationListEntry(v: Vacation_schema): string {
     return [
-        `${botAssetEmojis.dot} <@${v.userId}>`,
+        `${botAssetsEmojis.dot} <@${v.userId}>`,
         `**Длительность:** ${formatVacationDuration(v.estimated_end)}`,
         `**Причина:** ${v.reason}`,
         `**Дата:** ${formatDateTimeDDMMYYYY(new Date(v.startedAt))}`,
@@ -30,7 +30,7 @@ export function buildVacationListEmbed(pages: Vacation_schema[][], page: number,
 
     return new EmbedBuilder()
         .setColor(EMBED_COLOR)
-        .setTitle(`${botAssetEmojis.vacation} Сейчас в отпуске`)
+        .setTitle(`${botAssetsEmojis.vacation} Сейчас в отпуске`)
         .setDescription(description)
         .setFooter({ text: `Страница ${page + 1}/${pages.length} • Всего: ${total}` });
 }

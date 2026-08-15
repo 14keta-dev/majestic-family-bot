@@ -1,5 +1,5 @@
 import { ColorResolvable, EmbedBuilder } from "discord.js";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 
 export interface VacationSummary {
     userId: string;
@@ -15,16 +15,16 @@ function summaryEmbed(summary: VacationSummary, title: string, color: ColorResol
         .setTitle(title)
         .setDescription(`> <@${summary.userId}> хочет взять отпуск от игры`)
         .addFields(
-            { name: "> Причина", value: `${botAssetEmojis.dot} ${summary.reason}`, inline: true },
-            { name: "> Длительность", value: `${botAssetEmojis.dot} ${summary.durationText}`, inline: true },
-            { name: "> Убрано ролей", value: `${botAssetEmojis.dot} ${summary.removedRoleCount}`, inline: false },
+            { name: "> Причина", value: `${botAssetsEmojis.dot} ${summary.reason}`, inline: true },
+            { name: "> Длительность", value: `${botAssetsEmojis.dot} ${summary.durationText}`, inline: true },
+            { name: "> Убрано ролей", value: `${botAssetsEmojis.dot} ${summary.removedRoleCount}`, inline: false },
         )
         .setColor(color);
 
     if (summary.reviewerId) {
         embed.addFields({
             name: "> Проверил",
-            value: `${botAssetEmojis.dot} <@${summary.reviewerId}>`,
+            value: `${botAssetsEmojis.dot} <@${summary.reviewerId}>`,
             inline: false,
         });
     }
@@ -32,7 +32,7 @@ function summaryEmbed(summary: VacationSummary, title: string, color: ColorResol
     if (summary.rejectReason) {
         embed.addFields({
             name: "> Причина отклонения",
-            value: `${botAssetEmojis.dot} ${summary.rejectReason}`,
+            value: `${botAssetsEmojis.dot} ${summary.rejectReason}`,
             inline: false,
         });
     }
@@ -45,5 +45,5 @@ export const vacation_embeds = {
     approved: (summary: VacationSummary) => summaryEmbed(summary, "Отпуск оформлен", "Green"),
     rejected: (summary: VacationSummary) => summaryEmbed(summary, "Отпуск отклонён", "Red"),
     error: (description: string) =>
-        new EmbedBuilder().setTitle(`${botAssetEmojis.dot} Ошибка`).setDescription(`> ${description}`),
+        new EmbedBuilder().setTitle(`${botAssetsEmojis.dot} Ошибка`).setDescription(`> ${description}`),
 };

@@ -10,7 +10,7 @@ import {
     Invalid_afk_duration,
     parseAfkDurationMinutes,
 } from "../../utils/AFK/afk.schema";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 import { AFK_MODAL_CUSTOM_ID } from "../../buttons/afk/enter.button";
 
 export const AFK_LOG_BUTTON_CUSTOM_ID = {
@@ -19,7 +19,7 @@ export const AFK_LOG_BUTTON_CUSTOM_ID = {
 
 function errorEmbed(description: string): EmbedBuilder {
     return new EmbedBuilder()
-        .setTitle(`${botAssetEmojis.dot} Ошибка`)
+        .setTitle(`${botAssetsEmojis.dot} Ошибка`)
         .setDescription(description)
         .setColor("Red");
 }
@@ -76,9 +76,9 @@ export default {
                 .setTitle("> AFK: вход")
                 .setDescription(`<@${interaction.user.id}> ушёл в AFK`)
                 .addFields(
-                    { name: "> На сколько", value: `${botAssetEmojis.dot} ${rawDuration}`, inline: true },
-                    { name: "> Окончание", value: `${botAssetEmojis.dot} <t:${Math.floor(estimatedEndingAt.getTime() / 1000)}:R>`, inline: true },
-                    { name: "> Причина", value: `${botAssetEmojis.dot} ${reason}`, inline: false },
+                    { name: "> На сколько", value: `${botAssetsEmojis.dot} ${rawDuration}`, inline: true },
+                    { name: "> Окончание", value: `${botAssetsEmojis.dot} <t:${Math.floor(estimatedEndingAt.getTime() / 1000)}:R>`, inline: true },
+                    { name: "> Причина", value: `${botAssetsEmojis.dot} ${reason}`, inline: false },
                 )
                 .setTimestamp()
                 .setColor("Green");
@@ -126,11 +126,11 @@ export default {
             await interaction.editReply({
                 embeds: [
                     new EmbedBuilder()
-                        .setTitle(`${botAssetEmojis.dot} AFK включён`)
+                        .setTitle(`${botAssetsEmojis.dot} AFK включён`)
                         .addFields(
-                            { name: "> На сколько", value: `${botAssetEmojis.dot} ${rawDuration}`, inline: true },
-                            { name: "> Окончание", value: `${botAssetEmojis.dot} <t:${Math.floor(estimatedEndingAt.getTime() / 1000)}:R>`, inline: true },
-                            { name: "> Причина", value: `${botAssetEmojis.dot} ${reason}`, inline: false },
+                            { name: "> На сколько", value: `${botAssetsEmojis.dot} ${rawDuration}`, inline: true },
+                            { name: "> Окончание", value: `${botAssetsEmojis.dot} <t:${Math.floor(estimatedEndingAt.getTime() / 1000)}:R>`, inline: true },
+                            { name: "> Причина", value: `${botAssetsEmojis.dot} ${reason}`, inline: false },
                         )
                         .setColor("Green"),
                 ],

@@ -1,11 +1,9 @@
-﻿
-import { ServerCode } from ".";
+﻿import { ServerCode } from ".";
 
 export type BaseEmojiSet = Record<ServerCode, string>;
-export type AssetEmojiSet = Record<string, string>;
 
 // === AUTO-GENERATED START ===
-const assetsEmojis: AssetEmojiSet = {
+const assetsEmojis = {
     active: "<a:active:1536867341164478594>",
     afk: "<a:afk:1536994312020033536>",
     closed: "<a:closed:1536867344058421338>",
@@ -13,9 +11,9 @@ const assetsEmojis: AssetEmojiSet = {
     next: "<a:next:1537949059732480030>",
     prev: "<a:prev:1537949062802710548>",
     vacation: "<a:vacation:1537947849697009724>",
-};
+} as const;
 
-const serversEmojis: BaseEmojiSet = {
+const serversEmojis = {
     at: "<:at:1536101442312470558>",
     bs: "<:bs:1536101444673867897>",
     ch: "<:ch:1536101446955573310>",
@@ -36,11 +34,36 @@ const serversEmojis: BaseEmojiSet = {
     sf: "<:sf:1536101486642073714>",
     st: "<:st:1536101489062318260>",
     wa: "<:wa:1536101491436294156>",
-};
+} as const;
+
+const tempVoiceEmojis = {
+    add_user: "<:add_user:1538222704749056090>",
+    bitrate: "<:bitrate:1538222707500515369>",
+    change_leader: "<:change_leader:1538222709912113233>",
+    change_limit: "<:change_limit:1538222712210587839>",
+    change_name: "<:change_name:1538222715335344259>",
+    exclude_user: "<:exclude_user:1538222718175019058>",
+    give_user_acess: "<:give_user_acess:1538222720557256844>",
+    mute_unmute: "<:mute_unmute:1538222723120242740>",
+    open_close: "<:open_close:1538222725611393034>",
+    remove_user: "<:remove_user:1538222728513986580>",
+} as const;
+
+export type AssetsEmojiKey = keyof typeof assetsEmojis;
+export type AssetsEmojiSet = Record<AssetsEmojiKey, string>;
+
+export type ServersEmojiKey = keyof typeof serversEmojis;
+export type ServersEmojiSet = Record<ServersEmojiKey, string>;
+
+export type TempVoiceEmojiKey = keyof typeof tempVoiceEmojis;
+export type TempVoiceEmojiSet = Record<TempVoiceEmojiKey, string>;
 
 const registry = {
     servers: serversEmojis,
 };
+
+export const botAssetsEmojis: AssetsEmojiSet = assetsEmojis;
+export const botTempVoiceEmojis: TempVoiceEmojiSet = tempVoiceEmojis;
 // === AUTO-GENERATED END ===
 
 type BotId = keyof typeof registry;
@@ -55,7 +78,4 @@ function resolveActiveBot(): BotId {
     return fallback;
 }
 
-export const botEmojis: BaseEmojiSet = registry[resolveActiveBot()];
-
-/** Always-available named icon/asset emojis — same across every bot variant. */
-export const botAssetEmojis: AssetEmojiSet = assetsEmojis;
+export const botEmojis: BaseEmojiSet = registry[resolveActiveBot()] as unknown as BaseEmojiSet;

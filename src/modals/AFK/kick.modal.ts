@@ -5,13 +5,13 @@ import { metaBuilder } from "../../utils/logger/met_builder";
 import { log } from "../../utils/logger";
 import { safeReply } from "../../utils/safeReply.helper";
 import { afk_store, Not_in_afk_error } from "../../utils/AFK/afk.schema";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 import { getConfig } from "../../utils/config/store";
 import { AFK_KICK_MODAL_CUSTOM_ID } from "../../buttons/afk/kick.button";
 
 function errorEmbed(description: string): EmbedBuilder {
     return new EmbedBuilder()
-        .setTitle(`${botAssetEmojis.dot} Ошибка`)
+        .setTitle(`${botAssetsEmojis.dot} Ошибка`)
         .setDescription(description)
         .setColor("Red");
 }
@@ -91,12 +91,12 @@ export default {
                 .setTitle("> AFK: кик")
                 .setDescription(`<@${targetUserId}> был кикнут из AFK`)
                 .addFields(
-                    { name: "> Кем", value: `${botAssetEmojis.dot} <@${interaction.user.id}>`, inline: true },
-                    { name: "> Причина кика", value: `${botAssetEmojis.dot} ${reason}`, inline: true },
-                    { name: "> Пробыл в AFK", value: `${botAssetEmojis.dot} ${elapsedFormatted}`, inline: true },
-                    { name: "> Ушёл в AFK", value: `${botAssetEmojis.dot} <t:${Math.floor(enteredAt.getTime() / 1000)}:R>`, inline: true },
-                    { name: "> Ожидаемое возвращение", value: `${botAssetEmojis.dot} <t:${Math.floor(new Date(active.estimatedEndingAt).getTime() / 1000)}:R>`, inline: true },
-                    { name: "> Изначальная причина", value: `${botAssetEmojis.dot} ${active.afk_reason}`, inline: false },
+                    { name: "> Кем", value: `${botAssetsEmojis.dot} <@${interaction.user.id}>`, inline: true },
+                    { name: "> Причина кика", value: `${botAssetsEmojis.dot} ${reason}`, inline: true },
+                    { name: "> Пробыл в AFK", value: `${botAssetsEmojis.dot} ${elapsedFormatted}`, inline: true },
+                    { name: "> Ушёл в AFK", value: `${botAssetsEmojis.dot} <t:${Math.floor(enteredAt.getTime() / 1000)}:R>`, inline: true },
+                    { name: "> Ожидаемое возвращение", value: `${botAssetsEmojis.dot} <t:${Math.floor(new Date(active.estimatedEndingAt).getTime() / 1000)}:R>`, inline: true },
+                    { name: "> Изначальная причина", value: `${botAssetsEmojis.dot} ${active.afk_reason}`, inline: false },
                 )
                 .setColor("Red")
                 .setTimestamp();
@@ -140,11 +140,11 @@ export default {
             await interaction.editReply({
                 embeds: [
                     new EmbedBuilder()
-                        .setTitle(`${botAssetEmojis.dot} Пользователь кикнут из AFK`)
+                        .setTitle(`${botAssetsEmojis.dot} Пользователь кикнут из AFK`)
                         .setDescription(`<@${targetUserId}> был кикнут из AFK`)
                         .addFields(
-                            { name: "> Причина кика", value: `${botAssetEmojis.dot} ${reason}`, inline: true },
-                            { name: "> Пробыл в AFK", value: `${botAssetEmojis.dot} ${elapsedFormatted}`, inline: true },
+                            { name: "> Причина кика", value: `${botAssetsEmojis.dot} ${reason}`, inline: true },
+                            { name: "> Пробыл в AFK", value: `${botAssetsEmojis.dot} ${elapsedFormatted}`, inline: true },
                         )
                         .setColor("Green"),
                 ],

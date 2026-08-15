@@ -11,10 +11,10 @@ import {
     StringSelectMenuOptionBuilder,
     parseEmoji,
 } from "discord.js";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
 import { FamilyApplicationsConfig } from "../../utils/config/family_applications";
 import { getServerLogo } from "../../utils/emojis/server_emoji_map";
 import { APPLY_TYPES } from "../../utils/config/family_applications/applyFieldPresets";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 
 const FALLBACK_BANNER_URL =
     "https://cdn.discordapp.com/attachments/1399414333074833468/1537867418335060018/c47931be337f9840.gif?ex=6a809a24&is=6a7f48a4&hm=18620d1706ef13dd495ddbb5f105b31652e2aca81ef8cf65fc7349d6e82de4e4&";
@@ -26,15 +26,15 @@ const OPTION_DESCRIPTION_MAX_LENGTH = 100;
 const COPY = {
     heading: "## Путь в семью начинается здесь!",
     dmNotice: (serverName: string, serverLogo: string) =>
-        `${botAssetEmojis.dot} Уведомление о приглашении на обзвон отправляется в личные сообщения.\n` +
+        `${botAssetsEmojis.dot} Уведомление о приглашении на обзвон отправляется в личные сообщения.\n` +
         `Заявки открыты только на сервери ${serverName} ${serverLogo}`,
     processingTime: "> В среднем заявки обрабатываются в течение 12-ти часов",
     statusNotice:
-        `${botAssetEmojis.dot} Следите за статусом набора.\n\n` +
+        `${botAssetsEmojis.dot} Следите за статусом набора.\n\n` +
         "**Если возможности заполнить заявку нет – набор закрыт.\n" +
         "Каждое открытие набора сопровождается тегами в этом канале.**",
     reapplyNotice: "> В случае отказа можете подать заявку повторно через 2 дней",
-    applyCta: `${botAssetEmojis.dot} Подать заявку`,
+    applyCta: `${botAssetsEmojis.dot} Подать заявку`,
     placeholderOpen: "Подать заявку",
     placeholderClosed: "Набор закрыт",
     noOptionsAvailable: "Недоступно",

@@ -28,5 +28,11 @@ export const DEFAULT_CONFIG: BotConfig = {
         vacation_role: "",
         panel_channel: "",
         panel_message: ""
+    },
+    temp_voice: {
+        category: "",
+        create_channel: "",
+        panel_channel: "",
+        panel_message_id: ""
     }
 };

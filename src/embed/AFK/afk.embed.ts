@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from "discord.js";
-import { botAssetEmojis } from "../../utils/emojis/emojis";
+import { botAssetsEmojis } from "../../utils/emojis/emojis";
 
 export const AFK_EMBED_BUTTON_CUSTOM_IDS = {
     enter: "embed:afk:enter",
@@ -9,7 +9,7 @@ export const AFK_EMBED_BUTTON_CUSTOM_IDS = {
 
 export const afk_embed = () => {
     const embed = new EmbedBuilder()
-        .setTitle(`${botAssetEmojis.afk} AFK панель`)
+        .setTitle(`${botAssetsEmojis.afk} AFK панель`)
         .setDescription(`> **Уход в AFK до 24 часов.**\n\n` +
             `> **Кнопки:**\n` +
             `**• Уйти в AFK** — откроется модалка для ввода времени и причины\n` +
