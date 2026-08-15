@@ -1,0 +1,54 @@
+name: Discord Notify
+
+on:
+  push:
+    branches: [main]
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Отправить уведомление в Discord
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            TITLE="🚀 Новый пуш в main"
+            DESC="**${{ github.actor }}** запушил в \`main\`: ${{ github.event.head_commit.message }}"
+            URL="${{ github.event.head_commit.url }}"
+          elif [ "${{ github.event_name }}" = "issues" ]; then
+            TITLE="🐛 Открыт новый issue"
+            DESC="**${{ github.event.issue.title }}** от ${{ github.actor }}"
+            URL="${{ github.event.issue.html_url }}"
+          else
+            TITLE="🔀 Открыт новый pull request"
+            DESC="**${{ github.event.pull_request.title }}** от ${{ github.actor }}"
+            URL="${{ github.event.pull_request.html_url }}"
+          fi
+
+          PAYLOAD=$(jq -n \
+            --arg title "$TITLE" \
+            --arg desc "$DESC" \
+            --arg url "$URL" \
+            '{
+              flags: 32768,
+              components: [
+                {
+                  type: 17,
+                  accent_color: 5814783,
+                  components: [
+                    { type: 10, content: ("### " + $title) },
+                    { type: 10, content: $desc },
+                    { type: 10, content: ("[Открыть](" + $url + ")") }
+                  ]
+                }
+              ]
+            }')
+
+          curl -H "Content-Type: application/json" \
+            -d "$PAYLOAD" \
+            "${WEBHOOK_URL}?with_components=true"

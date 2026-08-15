@@ -1,0 +1,45 @@
+name: Discord Actions Status
+
+on:
+  workflow_run:
+    workflows: ["CI", "Build", "Tests"]   # <- замени на реальные имена своих workflow
+    types: [completed]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Отправить статус в Discord
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          STATUS="${{ github.event.workflow_run.conclusion }}"
+          if [ "$STATUS" = "success" ]; then
+            EMOJI="✅"; COLOR=3066993; STATUS_RU="успешно"
+          else
+            EMOJI="❌"; COLOR=15158332; STATUS_RU="ошибка"
+          fi
+
+          PAYLOAD=$(jq -n \
+            --arg name "${{ github.event.workflow_run.name }}" \
+            --arg status "$STATUS_RU" \
+            --arg emoji "$EMOJI" \
+            --arg url "${{ github.event.workflow_run.html_url }}" \
+            --argjson color "$COLOR" \
+            '{
+              flags: 32768,
+              components: [
+                {
+                  type: 17,
+                  accent_color: $color,
+                  components: [
+                    { type: 10, content: ("### " + $emoji + " " + $name + " — " + $status) },
+                    { type: 10, content: ("[Подробнее](" + $url + ")") }
+                  ]
+                }
+              ]
+            }')
+
+          curl -H "Content-Type: application/json" \
+            -d "$PAYLOAD" \
+            "${WEBHOOK_URL}?with_components=true"
