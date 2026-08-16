@@ -4,8 +4,8 @@ import { env } from "../env";
 type WebhookLevel = "FATAL" | "ERROR";
 
 const LEVEL_COLORS: Record<WebhookLevel, number> = {
-    FATAL: 0xed4245, 
-    ERROR: 0xf0b232, 
+    FATAL: 0xed4245,
+    ERROR: 0xf0b232,
 };
 
 const LEVEL_TITLES: Record<WebhookLevel, string> = {

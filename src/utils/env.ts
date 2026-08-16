@@ -1,8 +1,8 @@
-// src/env.ts
-import 'dotenv/config';
-import pino from 'pino';
 
-const logger = pino();
+import 'dotenv/config';
+import { rootLogger } from './logger/base';
+
+const logger = rootLogger.getSubLogger({ name: 'env' });
 
 const REQUIRED = 'required' as const;
 

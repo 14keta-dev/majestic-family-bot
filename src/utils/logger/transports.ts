@@ -1,38 +1,59 @@
+
+import fs from "node:fs";
 import path from "node:path";
-import { fileTransport } from "tslog/transports/file";
-import type { TLogLevel } from "tslog";
-import type { AttachableTransport, LogRecord, TransportFn } from "./base";
+import { LEVELS, type LogLevel, type LogRecord, type TransportFn } from "./types";
 import { sendErrorWebhook } from "./webhook";
 
 const LOGS_DIR = path.join(__dirname, "../../../logs");
+fs.mkdirSync(LOGS_DIR, { recursive: true });
 
-export function toFile(filename: string, opts?: { minLevel?: TLogLevel }) {
-    return fileTransport({
-        path: path.join(LOGS_DIR, filename),
-        append: true,
-        format: "json",
-        minLevel: opts?.minLevel,
-    });
+const streams = new Map<string, fs.WriteStream>();
+
+function getStream(filename: string) {
+    let stream = streams.get(filename);
+    if (!stream) {
+        stream = fs.createWriteStream(path.join(LOGS_DIR, filename), { flags: "a" });
+        streams.set(filename, stream);
+    }
+    return stream;
 }
 
-export function onlyLevel(levels: string[], transport: (record: LogRecord) => void): AttachableTransport {
-    return (record: LogRecord) => {
-        if (levels.includes(record._logMeta.logLevelName)) transport(record);
+function serializeArg(arg: unknown): unknown {
+    if (arg instanceof Error) {
+        return { name: arg.name, message: arg.message, stack: arg.stack };
+    }
+    return arg;
+}
+
+export function toFile(filename: string, opts?: { minLevel?: LogLevel }): TransportFn {
+    const stream = getStream(filename);
+    const minIndex = opts?.minLevel ? LEVELS.indexOf(opts.minLevel) : 0;
+
+    return (record) => {
+        if (LEVELS.indexOf(record.level) < minIndex) return;
+
+        const line = JSON.stringify({
+            date: record.date.toISOString(),
+            level: record.levelName,
+            name: record.name,
+            args: record.args.map(serializeArg),
+        });
+
+        stream.write(line + "\n");
+    };
+}
+
+export function onlyLevel(levels: string[], transport: TransportFn): TransportFn {
+    return (record) => {
+        if (levels.includes(record.levelName)) transport(record);
     };
 }
 
 function extractRecord(record: LogRecord): { message: string; meta: Record<string, unknown> } {
-    const args: unknown[] = [];
-    let i = 0;
-    while (Object.prototype.hasOwnProperty.call(record, i)) {
-        args.push((record as unknown as Record<number, unknown>)[i]);
-        i++;
-    }
-
     const messageParts: string[] = [];
     const meta: Record<string, unknown> = {};
 
-    for (const arg of args) {
+    for (const arg of record.args) {
         if (typeof arg === "string" || typeof arg === "number" || typeof arg === "boolean") {
             messageParts.push(String(arg));
         } else if (arg instanceof Error) {
@@ -44,7 +65,7 @@ function extractRecord(record: LogRecord): { message: string; meta: Record<strin
         }
     }
 
-    if (record._logMeta.name) meta.logger ??= record._logMeta.name;
+    meta.logger ??= record.name;
 
     return {
         message: messageParts.join(" ") || "(no message provided)",
@@ -53,12 +74,10 @@ function extractRecord(record: LogRecord): { message: string; meta: Record<strin
 }
 
 export function webhookTransport(): TransportFn {
-    return (record: LogRecord) => {
-        const level = record._logMeta.logLevelName;
-        if (level !== "ERROR" && level !== "FATAL") return; 
+    return (record) => {
+        if (record.levelName !== "ERROR" && record.levelName !== "FATAL") return;
 
         const { message, meta } = extractRecord(record);
-        sendErrorWebhook({ level, message, meta }).catch(() => {
-        });
+        sendErrorWebhook({ level: record.levelName as "ERROR" | "FATAL", message, meta }).catch(() => { });
     };
 }

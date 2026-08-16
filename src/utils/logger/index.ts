@@ -9,14 +9,14 @@ import { modalLogger } from "./modules/modal";
 import { selectLogger } from "./modules/select";
 
 rootLogger.attachTransport(toFile("combined.log"));
-rootLogger.attachTransport(toFile("errors.log", { minLevel: "ERROR" }));
+rootLogger.attachTransport(toFile("errors.log", { minLevel: "error" }));
 
 if (env.WEBHOOK_URL) {
     rootLogger.attachTransport(onlyLevel(["ERROR", "FATAL"], webhookTransport()));
 }
 
 function fatal(...args: unknown[]) {
-    rootLogger.fatal.apply(rootLogger, args as Parameters<typeof rootLogger.fatal>);
+    rootLogger.fatal(...args);
     handleFatal();
 }
 
@@ -30,14 +30,13 @@ process.on("uncaughtException", (err) => {
 });
 
 export const log = {
-    silly: rootLogger.silly.bind(rootLogger),
-    trace: rootLogger.trace.bind(rootLogger),
-    debug: rootLogger.debug.bind(rootLogger),
-    info: rootLogger.info.bind(rootLogger),
-    warn: rootLogger.warn.bind(rootLogger),
-    error: rootLogger.error.bind(rootLogger),
+    silly: rootLogger.silly,
+    trace: rootLogger.trace,
+    debug: rootLogger.debug,
+    info: rootLogger.info,
+    warn: rootLogger.warn,
+    error: rootLogger.error,
     fatal,
-
 
     button: buttonLogger,
     command: commandLogger,
