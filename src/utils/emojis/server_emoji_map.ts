@@ -3,7 +3,7 @@ import { botEmojis } from "./emojis";
 
 export enum Majestic_Servers {
     New_York = "New York",
-    Detroit = "Detroit", 
+    Detroit = "Detroit",
     Chicago = "Chicago",
     San_Francisco = "San Francisco",
     Atlanta = "Atlanta",
@@ -12,7 +12,7 @@ export enum Majestic_Servers {
     Miami = "Miami",
     Las_Vegas = "Las Vegas",
     Washington = "Washington",
-    Dallas = "Dallas", 
+    Dallas = "Dallas",
     Boston = "Boston",
     Houston = "Houston",
     Seattle = "Seattle",
@@ -21,6 +21,8 @@ export enum Majestic_Servers {
     Portland = "Portland",
     Orlando = "Orlando",
     Memphis = "Memphis",
+    Tverskoy = "Тверской",
+    Arbat = "Арбат"
 }
 
 
@@ -44,6 +46,8 @@ export const SERVER_CODE_MAP: Record<Majestic_Servers, ServerCode> = {
     [Majestic_Servers.Portland]: "pt",
     [Majestic_Servers.Orlando]: "or",
     [Majestic_Servers.Memphis]: "mp",
+    [Majestic_Servers.Tverskoy]: "tv",
+    [Majestic_Servers.Arbat]: "ar"
 };
 
 export function getServerLogo(server: Majestic_Servers): string {
@@ -83,6 +87,8 @@ export const SERVER_COMPONENTS = [
     { code: "or", name: "Orlando" },
     { code: "mp", name: "Memphis" },
     { code: "mcl", name: "MCL" },
+    { code: "ar", name: "Arbat" },
+    { code: "tv", name: "Tverskoy" }
 ] as const satisfies readonly ServerComponent[];
 
 export type ServerCode = (typeof SERVER_COMPONENTS)[number]["code"];
