@@ -47,12 +47,20 @@ const tempVoiceSchema = z.object({
     panel_message_id: z.string(),
 });
 
+const backpackSchema = z.object({
+    panel_channel: z.string(),
+    panel_message: z.string(),
+    allowed_roles: z.array(z.string()),
+});
+
 export const botConfigSchema = z.object({
+    family_role: z.string(),
     family_applications: familyApplicationsSchema,
     AFK: afkSchema,
     logs: logsSchema,
     vacation: vacationSchema,
     temp_voice: tempVoiceSchema,
+    backpack: backpackSchema,
 });
 
 const channelsPartialSchema = channelsSchema.partial();
@@ -69,14 +77,17 @@ const afkPartialSchema = afkSchema.partial();
 const logsPartialSchema = logsSchema.partial();
 const vacationPartialSchema = vacationSchema.partial();
 const tempVoicePartialSchema = tempVoiceSchema.partial();
+const backpackPartialSchema = backpackSchema.partial();
 
 const botConfigPartialSchema = z.object({
+    family_role: z.string().optional(),
     family_applications: familyApplicationsPartialSchema.optional(),
     AFK: afkPartialSchema.optional(),
     logs: logsPartialSchema.optional(),
     vacation: vacationPartialSchema.optional(),
     // accepts a partial object, a full null (clearing the section), or omission entirely
     temp_voice: tempVoicePartialSchema.optional(),
+    backpack: backpackPartialSchema.optional(),
 });
 
 export function parsePartialConfig(data: unknown): DeepPartial<BotConfig> {

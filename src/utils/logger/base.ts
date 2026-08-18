@@ -93,7 +93,7 @@ export class Logger {
 
 export const rootLogger = new Logger({
     name: "bot",
-    minLevel: process.env.NODE_ENV === "production" ? "info" : "silly",
+    minLevel: process.env.NODE_ENV === "production" ? "error" : "silly",
 });
 
 export interface LoggerModuleOptions {

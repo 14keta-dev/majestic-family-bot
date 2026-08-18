@@ -3,8 +3,9 @@ import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ContainerBuilder, MediaGa
 export const MANAGE_MENU_CUSTOM_ID = {
     family_applications: "embed:manage-menu:manage-applications:button",
     afk: "embed:manage-menu:manage-afk:button",
-    vacation: "embed:manage-menu:manage-vacation:button"
-}
+    vacation: "embed:manage-menu:manage-vacation:button",
+    backpack: "embed:manage-menu:manage-backpack:button"
+};
 
 export const manage_menu_embed = [
     new ContainerBuilder()
@@ -23,7 +24,11 @@ export const manage_menu_embed = [
                     new ButtonBuilder()
                         .setLabel("Управления Отпуском")
                         .setCustomId(MANAGE_MENU_CUSTOM_ID.vacation)
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
+                        .setLabel("Управления Портфелям")
                         .setStyle(ButtonStyle.Secondary)
+                        .setCustomId(MANAGE_MENU_CUSTOM_ID.backpack)
                 ),
         ),
 ];

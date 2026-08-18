@@ -2,6 +2,7 @@ import { Majestic_Servers } from "../emojis/server_emoji_map";
 import { BotConfig } from "./types";
 
 export const DEFAULT_CONFIG: BotConfig = {
+    family_role: "",
     family_applications: {
         active: true,
         server: Majestic_Servers.New_York,
@@ -34,5 +35,10 @@ export const DEFAULT_CONFIG: BotConfig = {
         create_channel: "",
         panel_channel: "",
         panel_message_id: ""
+    },
+    backpack: {
+        panel_channel: "",
+        panel_message: "",
+        allowed_roles: [""],
     }
 };
