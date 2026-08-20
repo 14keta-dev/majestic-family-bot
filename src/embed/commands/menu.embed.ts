@@ -4,7 +4,8 @@ export const MANAGE_MENU_CUSTOM_ID = {
     family_applications: "embed:manage-menu:manage-applications:button",
     afk: "embed:manage-menu:manage-afk:button",
     vacation: "embed:manage-menu:manage-vacation:button",
-    backpack: "embed:manage-menu:manage-backpack:button"
+    backpack: "embed:manage-menu:manage-backpack:button",
+    event: "embed:manage-menu:manage-event:button"
 };
 
 export const manage_menu_embed = [
@@ -28,7 +29,11 @@ export const manage_menu_embed = [
                     new ButtonBuilder()
                         .setLabel("Управления Портфелям")
                         .setStyle(ButtonStyle.Secondary)
-                        .setCustomId(MANAGE_MENU_CUSTOM_ID.backpack)
+                        .setCustomId(MANAGE_MENU_CUSTOM_ID.backpack),
+                    new ButtonBuilder()
+                        .setLabel("Управления МП")
+                        .setStyle(ButtonStyle.Secondary)
+                        .setCustomId(MANAGE_MENU_CUSTOM_ID.event)
                 ),
         ),
 ];

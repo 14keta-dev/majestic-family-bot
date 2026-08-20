@@ -53,6 +53,15 @@ const backpackSchema = z.object({
     allowed_roles: z.array(z.string()),
 });
 
+const EventConfigSchema = z.object({
+    name: z.string(),
+    create_channel: z.string(),
+    tag_channel: z.string(),
+    replay_channel: z.string(),
+    allowed_roles: z.array(z.string()),
+    create_message: z.string(),
+});
+
 export const botConfigSchema = z.object({
     family_role: z.string(),
     family_applications: familyApplicationsSchema,
@@ -61,7 +70,9 @@ export const botConfigSchema = z.object({
     vacation: vacationSchema,
     temp_voice: tempVoiceSchema,
     backpack: backpackSchema,
+    event: z.array(EventConfigSchema),
 });
+
 
 const channelsPartialSchema = channelsSchema.partial();
 
@@ -79,15 +90,17 @@ const vacationPartialSchema = vacationSchema.partial();
 const tempVoicePartialSchema = tempVoiceSchema.partial();
 const backpackPartialSchema = backpackSchema.partial();
 
+const EventConfigPartialSchema = z.array(EventConfigSchema.partial());
+
 const botConfigPartialSchema = z.object({
     family_role: z.string().optional(),
     family_applications: familyApplicationsPartialSchema.optional(),
     AFK: afkPartialSchema.optional(),
     logs: logsPartialSchema.optional(),
     vacation: vacationPartialSchema.optional(),
-    // accepts a partial object, a full null (clearing the section), or omission entirely
     temp_voice: tempVoicePartialSchema.optional(),
     backpack: backpackPartialSchema.optional(),
+    mp: EventConfigPartialSchema.optional(),
 });
 
 export function parsePartialConfig(data: unknown): DeepPartial<BotConfig> {

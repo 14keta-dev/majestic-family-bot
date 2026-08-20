@@ -1,4 +1,3 @@
-
 import { Events, Interaction } from 'discord.js';
 import type { BotEvent } from '../../types';
 import { buttons } from '../../loaders/button.loader';
@@ -77,10 +76,9 @@ export default {
         }
 
         if (interaction.isAnySelectMenu()) {
-
             const select = selects.find(s =>
                 typeof s.customId === 'string'
-                    ? interaction.customId === s.customId
+                    ? matchCustomId(interaction.customId, s.customId, { dynamic: s.dynamic })
                     : s.customId.test(interaction.customId)
             );
             if (!select) return;

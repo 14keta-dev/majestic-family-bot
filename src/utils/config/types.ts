@@ -4,6 +4,7 @@ import { FamilyApplicationsConfig } from "./family_applications";
 import { Vacation_config } from "./vacation";
 import { Temp_voice_iterface } from "./temp_voice";
 import { backpack_interface } from "./backpack";
+import { EventConfig } from "./EVENT";
 
 export interface BotConfig {
     family_role: string;
@@ -12,7 +13,8 @@ export interface BotConfig {
     logs: BotLogs;
     vacation: Vacation_config;
     temp_voice: Temp_voice_iterface;
-    backpack: backpack_interface
+    backpack: backpack_interface;
+    event: EventConfig[];
 }
 
 export type DeepPartial<T> = { [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K] };
